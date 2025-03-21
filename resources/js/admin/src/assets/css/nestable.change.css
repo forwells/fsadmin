@@ -1,0 +1,11 @@
+.nestable-item.is-dragging:before {
+    background: transparent;
+}
+
+.nestable-list svg {
+    font-size: 15px;
+}
+
+.nestable-items-wrapper svg{
+    
+}
