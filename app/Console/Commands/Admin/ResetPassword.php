@@ -24,7 +24,7 @@ class ResetPassword extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Reset admin account password';
 
     /**
      * Execute the console command.
@@ -32,19 +32,19 @@ class ResetPassword extends Command
     public function handle()
     {
         //
-        $name = text('请输入用户名:', required: true);
+        $name = text('Username:', required: true);
         if (!User::where('name', $name)->exists()) {
             info('用户不存在');
             return Command::FAILURE;
         }
 
-        $password = password('请输入要更改的密码:', required: true);
+        $password = password('New password:', required: true);
 
         $user = User::where('name', $name)->first();
         $user->password = Hash::make($password);
         $user->save();
 
-        info("{$name} 密码已修改完成");
+        info("{$name} password changed.");
         return Command::SUCCESS;
     }
 }

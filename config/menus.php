@@ -8,14 +8,16 @@ return [
 
         'label' => '设置',
         'key' => '/settings',
+        'default' => '/settings/general',
         'children' => [
             [
-                'label' => '站点配置',
-                'key' => '/sites'
+                'label' => '通用',
+                'key' => '/settings/general',
             ],
             [
                 'label' => '用户管理',
                 'key' => '/user',
+                'default' => '/users/',
                 'is_dev' => 1,
                 'children' => [
                     [
@@ -35,7 +37,8 @@ return [
                         'key' => '/users/menus'
                     ]
                 ]
-            ]
+            ],
+
         ]
 
     ]

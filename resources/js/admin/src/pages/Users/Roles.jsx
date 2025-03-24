@@ -100,14 +100,6 @@ export default function Roles() {
         }
     })
 
-    const sites_query = useMutation({
-        mutationKey: ['role-sites-query'],
-        mutationFn: () => http.get('/api/settings/site'),
-        onSuccess: (data) => {
-            console.log('站点列表', data?.data)
-        }
-    })
-
     /** @type {import('antd').TableColumnProps} */
     const role_cols = [
         {
@@ -234,7 +226,6 @@ export default function Roles() {
     useEffect(() => {
         permissions_query.mutate()
         menus_query.mutate()
-        sites_query.mutate()
     }, []);
 
     return <>
@@ -320,9 +311,10 @@ export default function Roles() {
                         multiple
                     />
                 </Form.Item>
-                <Form.Item label={'站点'} initialValue={[]} name={'site_ids'}>
+                {/* Sample */}
+                {/* <Form.Item label={'站点'} initialValue={[]} name={'site_ids'}>
                     <Checkbox.Group options={sites_query.data?.data} className="shadow-inner shadow-black border border-violet-600 rounded-[5px] !px-2 !py-1" />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item >
                     <Button loading={role_create_mutation.isPending} onClick={handleSubmit} >提交</Button>
                 </Form.Item>

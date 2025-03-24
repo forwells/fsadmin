@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.8",
+        "rap2hpoutre/fast-excel": "^5.6",
         "spatie/eloquent-sortable": "^4.4",
         "spatie/laravel-webhook-client": "^3.4"
     },

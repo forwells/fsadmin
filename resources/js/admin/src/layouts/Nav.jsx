@@ -1,7 +1,6 @@
 import { Menu } from "antd"
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import menu_items from "../config/menu_items"
 import { useSelector } from "react-redux"
 
 export default function Nav() {
@@ -12,10 +11,11 @@ export default function Nav() {
     const [openKeys, setOpenKeys] = useState([], (prev, next) => prev.menus === next.menus)
     const user = useSelector(state => state.user.user)
     const handleNav = (e) => {
+        console.log('菜单点击', e);
         navigate(e.key)
     }
 
-    /** 递归寻路 */
+    /** Find Menus */
     const findParentKeys = (path, items) => {
 
         for (let i in items) {
@@ -32,6 +32,34 @@ export default function Nav() {
         }
         return [];
     }
+
+    /** Find item by key */
+    const findCurrentKeyItem = (key, items) => {
+        for (let i in items) {
+            // 一级匹配
+            if (items[i].key == key) {
+                return items[i];
+            }
+            if (items[i].children) {
+                return findCurrentKeyItem(key, items[i].children);
+            }
+        }
+    }
+
+    /** Expand with default select route */
+    const handleOpenkeys = (keys) => {
+        const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
+        // console.log(latestOpenKey);
+        if (latestOpenKey) {
+            let current_item = findCurrentKeyItem(latestOpenKey, menus)
+            // console.log('cl',current_item);
+            current_item ? navigate(current_item.default) : ''
+
+        }
+
+        setOpenKeys(keys)
+    }
+
     useEffect(() => {
         const path = location.pathname
 
@@ -63,6 +91,6 @@ export default function Nav() {
         openKeys={openKeys}
         items={menus}
         multiple
-        onOpenChange={keys => setOpenKeys(keys)}
+        onOpenChange={handleOpenkeys}
     />
 }
