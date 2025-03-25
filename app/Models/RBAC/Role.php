@@ -2,7 +2,6 @@
 
 namespace App\Models\RBAC;
 
-use App\Models\Shop\Site;
 use App\Models\Traits\DateTimeFormat as TraitsDateTimeFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,8 +23,4 @@ class Role extends Model
         return $this->belongsToMany(Menu::class, 'rbac_role_menu');
     }
 
-    public function sites()
-    {
-        return $this->belongsToMany(Site::class, 'rbac_role_site');
-    }
 }

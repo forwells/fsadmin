@@ -4,17 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Http\Resources\SiteResource;
 use App\Models\RBAC\Menu;
 use App\Models\RBAC\Role;
-use App\Models\Shop\Site;
 use App\Models\Traits\DateTimeFormat;
 use App\Models\Traits\HasPermissions;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -51,11 +48,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function bindings()
-    {
-        return $this->hasOne(User\Binding::class);
-    }
 
     public function roles()
     {
