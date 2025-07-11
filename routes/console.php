@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 use function Laravel\Prompts\info;
+use Illuminate\Support\Facades\Schedule;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ use function Laravel\Prompts\info;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+
+/** Schedule tasks */
+// Schedule::command('emails:send')->daily();

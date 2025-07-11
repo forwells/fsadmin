@@ -35,4 +35,6 @@ class EventServiceProvider extends ServiceProvider
     {
         return false;
     }
+
+    protected function configureEmailVerification() {}
 }
